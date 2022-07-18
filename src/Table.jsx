@@ -9,7 +9,7 @@ class Table extends React.Component {
     };
 
     componentDidMount() {
-        fetch("/movies").then(function (res) {
+        fetch("https://movieapp-ak.herokuapp.com/movies").then(function (res) {
             return res.json();
         }).then((json) => {
             this.setState({ allMovies: json })

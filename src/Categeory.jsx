@@ -6,7 +6,7 @@ class Categeory extends React.Component{
         allenre : ["Action"],
       }
      componentDidMount(){
-      fetch("/genre").then(function(res){
+      fetch("https://movieapp-ak.herokuapp.com/genre").then(function(res){
         return res.json();
       }).then((json) => {
         this.setState({allenre:json})

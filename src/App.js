@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Categeory from './Categeory'
+import Search from './Search'
+import Table from './Table'
 
-function App() {
+
+
+  
+
+ class App extends React.Component {
+    state = {
+      nofMovies:0,
+      searchStr:"",
+      currGenre:"AllGenre"
+    }
+    
+    receiveMovieData = (number) => {
+         this.setState({nofMovies:number});
+    }
+    receiveSearchData = (val) => {
+      this.setState({searchStr:val});
+    }
+    receiveCurrGenre = (genre) => {
+          this.setState({currGenre:genre});
+    }
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
 
+      <div className="row">
+        <div className="col-2 p-4">
+          <Categeory  gered={this.receiveCurrGenre}/>
+        </div>
+        <div className="col-10 p-4">
+          <div className="row">
+            <div className="col-3">
+              <Search nofMovies={this.state.nofMovies} sdata={this.receiveSearchData}/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-8">
+              <Table sendData={this.receiveMovieData} sdata1={this.state.searchStr} currGenre={this.state.currGenre}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </>
+  )
+  }
+}
 export default App;

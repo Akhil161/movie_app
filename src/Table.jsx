@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Table extends React.Component {
     state = {
@@ -20,9 +21,9 @@ class Table extends React.Component {
 
         let moviesTodisplay = [];
 
-        if(this.props.currGenre !="AllGenre"){
+        if(this.props.currGenre !=="AllGenre"){
           moviesTodisplay =  this.state.allMovies.filter((el) =>{
-             return   el.genre.name == this.props.currGenre;
+             return   el.genre.name === this.props.currGenre;
             })
         }else{
             moviesTodisplay=this.state.allMovies;
@@ -75,7 +76,7 @@ class Table extends React.Component {
                                         <td onClick={() => {
                                            let allMovies = this.state.allMovies;
 
-                                           let index = allMovies.findIndex((e) => e._id==el._id);
+                                           let index = allMovies.findIndex((e) => e._id===el._id);
                                             allMovies[index].liked ? allMovies[index].liked=false:allMovies[index].liked=true;
                                             this.setState({allMovies:allMovies});
 
@@ -85,7 +86,7 @@ class Table extends React.Component {
                                                 let allMovies = this.state.allMovies
 
                                                 allMovies = allMovies.filter((ele) => {
-                                                   return ele._id !=el._id;
+                                                   return ele._id !==el._id;
                                                 })
                                                 this.props.sendData(allMovies.length);
                                                 this.setState({allMovies:allMovies});
@@ -112,7 +113,7 @@ class Table extends React.Component {
                                 this.setState({currPage:currPage})
                             }
                         }>
-                            <a class="page-link" href="#">Previous</a>
+                            <Link class="page-link" >Previous</Link>
                             </li>
 
                         {
@@ -121,7 +122,7 @@ class Table extends React.Component {
                                     <li class="page-item" onClick={() =>{
                                         this.setState({currPage:el})
                                     }}>
-                                        <a class="page-link" href="#">{el}</a>
+                                        <Link class="page-link" >{el}</Link>
                                         </li>
                                 )
                             })
@@ -136,7 +137,7 @@ class Table extends React.Component {
                                 this.setState({currPage:currPage})
                             }
                         }>
-                            <a class="page-link" href="#">Next</a></li>
+                            <Link class="page-link">Next</Link></li>
                     </ul>
                 </nav>
 
